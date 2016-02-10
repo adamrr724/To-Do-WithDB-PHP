@@ -20,7 +20,12 @@ class Task
 
     function save()
     {
-        array_push($_SESSION['list_list_of_tasks'], $this);
+        array_push($_SESSION['list_of_tasks'], $this);
+    }
+
+    static function getAll()
+    {
+        return $_SESSION['list_of_tasks'];
     }
 }
 ?>
