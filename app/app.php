@@ -20,6 +20,15 @@
             $output .= "<h2>" . $task->getDescription() . "</h2>";
         }
 
+        $output .= "
+        <form action='/tasks' method='post'>
+            <label for='description'>Task Description</label>
+            <input id='description' name='description' type='text'>
+
+            <button type='submit'>Add Task</button>
+        </form>
+        ";
+
         return $output;
     });
 
