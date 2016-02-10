@@ -7,17 +7,23 @@
         $_SESSION['list_of_tasks'] = array();
     }
 
-
-
-
     $app = new Silex\Application();
 
     $app->get("/", function() {
 
         $output = "";
 
-        foreach (Task::getAll() as $task) {
-            $output .= "<h2>" . $task->getDescription() . "</h2>";
+        $all_tasks = Task::getAll();
+
+        if (!empty($all_tasks)) {
+            $output .= "
+            <h1>To Do List</h1>
+            <h2>Here are all your tasks:</h2>
+            ";
+
+            foreach ($all_tasks as $task) {
+                $output .= "<h4>" . $task->getDescription() . "</h4>";
+            }
         }
 
         $output .= "
