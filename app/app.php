@@ -32,5 +32,15 @@
         return $output;
     });
 
+    $app->post("/tasks", function () {
+        $new_task = new Task($_POST['description']);
+        $new_task->save();
+        return "
+            <h1>You created a task!</h1>
+            <p>" . $new_task->getDescription() . "</p>
+            <p><a href= '/'>View your list of things to do.</a></p>
+            ";
+    });
+
     return $app;
 ?>
