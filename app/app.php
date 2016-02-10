@@ -9,39 +9,17 @@
 
     $app = new Silex\Application();
 
-    $app->get("/", function() {
+    $app->register(new Silex\Provider\TwigServiceProvider(), array(
+    'twig.path' => __DIR__.'/../views'
+    ));
 
-        $output = "";
+    $app->get("/", function() use ($app) {
 
-        $all_tasks = Task::getAll();
 
-        if (!empty($all_tasks)) {
-            $output .= "
-            <h1>To Do List</h1>
-            <h2>Here are all your tasks:</h2>
-            ";
-
-            foreach ($all_tasks as $task) {
-                $output .= "<h4>" . $task->getDescription() . "</h4>";
-            }
-        }
-
-        $output .= "
-        <form action='/tasks' method='post'>
-            <label for='description'>Task Description</label>
-            <input id='description' name='description' type='text'>
-
-            <button type='submit'>Add Task</button>
-        </form>
-        ";
-        $output .= "
-            <form action='/delete_tasks' method='post'>
-                <button type='submit'>Delete Task List</button>
-            </form>
-        ";
-
-        return $output;
+        return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll()));
     });
+
+
 
     $app->post("/tasks", function () {
         $new_task = new Task($_POST['description']);
