@@ -2,10 +2,12 @@
 class Task
 {
     private $description;
+    private $id;
 
-    function __construct($task_description)
+    function __construct($task_description, $task_id = null)
     {
         $this->description = $task_description;
+        $this->id = $task_id;
     }
 
     function SetDescription($new_description)
@@ -16,6 +18,11 @@ class Task
     function GetDescription()
     {
         return $this->description;
+    }
+
+    function getId()
+    {
+        return $this->id;
     }
 
     function save()
