@@ -20,7 +20,7 @@ class Task
 
     function save()
     {
-        array_push($_SESSION['list_of_tasks'], $this);
+        $GLOBALS['DB']->exec("INSERT INTO tasks (description) VALUES ('{$this->GetDescription()}')");
     }
 
     static function getAll()
