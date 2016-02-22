@@ -28,6 +28,7 @@ class Task
     function save()
     {
         $GLOBALS['DB']->exec("INSERT INTO tasks (description) VALUES ('{$this->GetDescription()}')");
+        $this->id = $GLOBALS['DB']->lastInsertId();
     }
 
     static function getAll()
