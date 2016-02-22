@@ -16,6 +16,7 @@
 
     $app->get("/", function() use ($app) {
         return $app['twig']->render('index.html.twig');
+    });
 
     $app->get("/tasks", function() use ($app) {
         return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll()));
@@ -41,6 +42,11 @@
         Task::deleteAll();
         return $app['twig']->render('index.html.twig');
     });
+
+    $app->post("/delete_categories", function() use ($app) {
+       Category::deleteAll();
+       return $app['twig']->render('index.html.twig');
+   });
 
     return $app;
 
