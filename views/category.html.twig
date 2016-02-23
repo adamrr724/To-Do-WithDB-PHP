@@ -9,7 +9,7 @@
         <p>Here are the tasks:</p>
         <ul>
             {% for task in tasks %}
-                <li>{{ task.getDescription }}</li>
+                <li>{{ task.getDescription }}. Complete by: {{ task.getDueDate }}</li>
             {% endfor %}
         </ul>
         <form action="/delete_tasks/{{ category.getId }}" method="post">
