@@ -41,8 +41,9 @@
 
     $app->post("/tasks", function() use ($app) {
         $description = $_POST['description'];
+        $due_date = $_POST['due_date'];
         $category_id = $_POST['category_id'];
-        $task = new Task($description, $id = null, $category_id);
+        $task = new Task($description, $due_date, $id = null, $category_id);
         $task->save();
         $category = Category::find($category_id);
         return $app['twig']->render('category.html.twig', array('category' => $category, 'tasks' => $category->getTasks()));
