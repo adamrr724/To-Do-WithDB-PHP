@@ -46,6 +46,7 @@
         $task = new Task($description, $due_date, $id = null, $category_id);
         $task->save();
         $category = Category::find($category_id);
+
         return $app['twig']->render('category.html.twig', array('category' => $category, 'tasks' => $category->getTasks()));
 });
 
