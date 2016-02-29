@@ -107,7 +107,8 @@
 
             $description = "File reports";
             $id2 = 2;
-            $test_task = new Task($description, $id2);
+            $complete = 0;
+            $test_task = new Task($description, $id2, $complete);
             $test_task->save();
 
             //Act
@@ -187,7 +188,8 @@
 
             $description = "File reports";
             $id2 = 2;
-            $test_task = new Task($description, $id2);
+            $complete = 0;
+            $test_task = new Task($description, $id2, $complete);
             $test_task->save();
 
             //Act
@@ -207,12 +209,13 @@
 
             $description = "Wash the dog";
             $id2 = 2;
-            $test_task = new Task($description, $id2);
+            $complete = 0;
+            $test_task = new Task($description, $id2, $complete);
             $test_task->save();
 
             $description2 = "Take out the trash";
             $id3 = 3;
-            $test_task2 = new Task($description2, $id3);
+            $test_task2 = new Task($description2, $id3, $complete);
             $test_task2->save();
 
             //Act

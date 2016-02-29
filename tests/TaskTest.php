@@ -26,7 +26,9 @@
         {
             //Arrange
             $description = "Do dishes.";
-            $test_task = new Task($description);
+            $complete = 0;
+            $id = 1;
+            $test_task = new Task($description, $id, $complete);
 
             //Act
             $result = $test_task->getDescription();
@@ -39,7 +41,9 @@
         {
             //Arrange
             $description = "Do dishes.";
-            $test_task = new Task($description);
+            $complete = 0;
+            $id = 1;
+            $test_task = new Task($description, $id, $complete);
 
             //Act
             $test_task->setDescription("Drink coffee.");
@@ -52,9 +56,10 @@
         function testGetId()
         {
             //Arrange
+            $description = "Do dishes.";
+            $complete = 0;
             $id = 1;
-            $description = "Wash the dog";
-            $test_task = new Task($description, $id);
+            $test_task = new Task($description, $id, $complete);
 
             //Act
             $result = $test_task->getId();
@@ -66,9 +71,10 @@
         function testSave()
         {
             //Arrange
-            $description = "Wash the dog";
+            $description = "Do dishes.";
+            $complete = 0;
             $id = 1;
-            $test_task = new Task($description, $id);
+            $test_task = new Task($description, $id, $complete);
 
             //Act
             $test_task->save();
@@ -81,9 +87,10 @@
         function testSaveSetsId()
         {
             //Arrange
-            $description = "Wash the dog";
+            $description = "Do dishes.";
+            $complete = 0;
             $id = 1;
-            $test_task = new Task($description, $id);
+            $test_task = new Task($description, $id, $complete);
 
             //Act
             $test_task->save();
@@ -95,15 +102,16 @@
         function testGetAll()
         {
             //Arrange
-            $description = "Wash the dog";
+            $description = "Do dishes.";
+            $complete = 0;
             $id = 1;
-            $test_task = new Task($description, $id);
+            $test_task = new Task($description, $id, $complete);
             $test_task->save();
 
 
             $description2 = "Water the lawn";
             $id2 = 2;
-            $test_task2 = new Task($description2, $id2);
+            $test_task2 = new Task($description2, $id2, $complete);
             $test_task2->save();
 
             //Act
@@ -116,14 +124,15 @@
         function testDeleteAll()
         {
             //Arrange
-            $description = "Wash the dog";
+            $description = "Do dishes.";
+            $complete = 0;
             $id = 1;
-            $test_task = new Task($description, $id);
+            $test_task = new Task($description, $id, $complete);
             $test_task->save();
 
             $description2 = "Water the lawn";
             $id2 = 2;
-            $test_task2 = new Task($description2, $id2);
+            $test_task2 = new Task($description2, $id2, $complete);
             $test_task2->save();
 
             //Act
@@ -137,14 +146,15 @@
         function testFind()
         {
             //Arrange
-            $description = "Wash the dog";
+            $description = "Do dishes.";
+            $complete = 0;
             $id = 1;
-            $test_task = new Task($description, $id);
+            $test_task = new Task($description, $id, $complete);
             $test_task->save();
 
             $description2 = "Water the lawn";
             $id2 = 2;
-            $test_task2 = new Task($description2, $id2);
+            $test_task2 = new Task($description2, $id2, $complete);
             $test_task2->save();
 
             //Act
@@ -157,9 +167,10 @@
         function testUpdate()
         {
             //Arrange
-            $description = "Wash the dog";
+            $description = "Do dishes.";
+            $complete = 0;
             $id = 1;
-            $test_task = new Task($description, $id);
+            $test_task = new Task($description, $id, $complete);
             $test_task->save();
 
             $new_description = "Clean the dog";
@@ -180,9 +191,10 @@
             $test_category = new Category($name, $id);
             $test_category->save();
 
-            $description = "File reports";
+            $description = "Do dishes.";
+            $complete = 0;
             $id2 = 2;
-            $test_task = new Task($description, $id2);
+            $test_task = new Task($description, $id2, $complete);
             $test_task->save();
 
             //Act
@@ -200,9 +212,10 @@
             $test_category = new Category($name, $id);
             $test_category->save();
 
-            $description = "File reports";
+            $description = "Do dishes.";
+            $complete = 0;
             $id2 = 2;
-            $test_task = new Task($description, $id2);
+            $test_task = new Task($description, $id2, $complete);
             $test_task->save();
 
             //Act
@@ -227,7 +240,8 @@
 
             $description = "File reports";
             $id3 = 3;
-            $test_task = new Task($description, $id3);
+            $complete = 0;
+            $test_task = new Task($description, $id3, $complete);
             $test_task->save();
 
             //Act

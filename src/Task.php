@@ -3,11 +3,13 @@
     {
         private $description;
         private $id;
+        private $complete;
 
-        function __construct($description, $id = null)
+        function __construct($description, $id = null, $complete)
         {
             $this->description = $description;
             $this->id = $id;
+            $this->complete = $complete;
         }
 
         function setDescription($new_description)
@@ -20,6 +22,15 @@
             return $this->description;
         }
 
+        function setComplete($new_complete)
+        {
+            $this->complete =  (string) $new_complete;
+        }
+
+        function getComplete()
+        {
+            return $this->complete;
+        }
         function getId()
         {
             return $this->id;
@@ -27,7 +38,7 @@
 
         function save()
         {
-              $GLOBALS['DB']->exec("INSERT INTO tasks (description) VALUES ('{$this->getDescription()}');");
+              $GLOBALS['DB']->exec("INSERT INTO tasks (description, complete) VALUES ('{$this->getDescription()}', {$this->getComplete()});");
               $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
@@ -37,8 +48,9 @@
             $tasks = array();
             foreach($returned_tasks as $task) {
                 $description = $task['description'];
+                $complete = $task['complete'];
                 $id = $task['id'];
-                $new_task = new Task($description, $id);
+                $new_task = new Task($description, $id, $complete);
                 array_push($tasks, $new_task);
             }
             return $tasks;
@@ -72,7 +84,7 @@
             $GLOBALS['DB']->exec("DELETE FROM tasks WHERE id = {$this->getId()};");
             $GLOBALS['DB']->exec("DELETE FROM categories_tasks WHERE task_id = {$this->getId()};");
         }
-        
+
         function addCategory($category)
         {
             $GLOBALS['DB']->exec("INSERT INTO categories_tasks (category_id, task_id) VALUES ({$category->getId()}, {$this->getId()});");

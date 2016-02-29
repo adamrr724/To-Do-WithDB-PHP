@@ -38,7 +38,8 @@
 
     $app->post("/tasks", function() use ($app) {
         $description = $_POST['description'];
-        $task = new Task($description);
+        $complete = $_POST['complete'];
+        $task = new Task($description, $id=null,  $complete);
         $task->save();
         return $app['twig']->render('tasks.html.twig', array('tasks' => Task::getAll()));
     });

@@ -19,6 +19,7 @@
     {% endif %}
 
     <form action='/tasks' method='post'>
+         <input id="complete" name="complete" type="hidden" value="0">
         <label for='description'>Task description:</label>
         <input id='description' name='description' type='text'>
 
