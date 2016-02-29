@@ -75,9 +75,10 @@
     });
 
     $app->patch("/task_complete/{id}", function($id) use ($app) {
+        $category = Category::find($_POST['category_id']);
         $task = Task::find($id);
         $task->updateComplete();
-        return $app['twig']->render('index.html.twig', array('categories' => Category::getAll(), 'tasks' => Task::getAll()));
+        return $app['twig']->render('category.html.twig', array('category' => $category, 'tasks' => $category->getTasks(), 'all_tasks' => Task::getAll()));
     });
 
     $app->delete("/delete_categories", function() use ($app) {
