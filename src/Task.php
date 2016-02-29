@@ -79,6 +79,12 @@
             $this->setDescription($new_description);
         }
 
+        function updateComplete()
+        {
+            $GLOBALS['DB']->exec("UPDATE tasks SET complete = '1' WHERE id = {$this->getId()};");
+            $this->setComplete('1');
+        }
+
         function delete()
         {
             $GLOBALS['DB']->exec("DELETE FROM tasks WHERE id = {$this->getId()};");

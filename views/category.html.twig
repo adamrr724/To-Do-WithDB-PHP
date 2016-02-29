@@ -9,7 +9,16 @@
         <p>Here are the tasks for this category:</p>
         <ul>
             {% for task in tasks %}
-                <li>{{ task.getDescription }}</li>
+                <li>{{ task.getDescription }}
+                    {% if task.getComplete == 1 %}
+                            &#10004;
+                         </li>
+                        {% else %}
+                        <form action="/task_complete/{{ task.getId }}" method="post">
+                            <input name="_method" type="hidden" value="patch">
+                            <button type='submit'>Mark As Complete</button>
+                        </form><br>
+                    {% endif %}
             {% endfor %}
         </ul>
     {% endif %}

@@ -8,7 +8,7 @@
     $app = new Silex\Application();
 
 
-    // $app['debug'] = true;
+    $app['debug'] = true;
 
     $server = 'mysql:host=localhost;dbname=to_do';
     $username = 'root';
@@ -72,6 +72,12 @@
         $task = Task::find($_POST['task_id']);
         $task->addCategory($category);
         return $app['twig']->render('task.html.twig', array('task' => $task, 'tasks' => Task::getAll(), 'categories' => $task->getCategories(), 'all_categories' => Category::getAll()));
+    });
+
+    $app->patch("/task_complete/{id}", function($id) use ($app) {
+        $task = Task::find($id);
+        $task->updateComplete();
+        return $app['twig']->render('index.html.twig', array('categories' => Category::getAll(), 'tasks' => Task::getAll()));
     });
 
     $app->delete("/delete_categories", function() use ($app) {

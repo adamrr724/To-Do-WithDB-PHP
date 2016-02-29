@@ -252,5 +252,27 @@
             $this->assertEquals($test_task->getCategories(), [$test_category, $test_category2]);
         }
 
+        function test_updateComplete()
+        {//mark an uncompleted task to complete
+            //Arrange
+            $name = "Work stuff";
+            $id = 1;
+            $test_category = new Category($name, $id);
+            $test_category->save();
+
+            $description = "Do dishes.";
+            $complete = 0;
+            $id2 = 2;
+            $test_task = new Task($description, $id2, $complete);
+            $test_task->save();
+
+            //Act
+            $test_task->updateComplete();
+
+            //assert
+            $this->assertEquals(1, $test_task->getComplete());
+
+        }
+
     }
 ?>
