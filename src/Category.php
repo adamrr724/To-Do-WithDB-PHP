@@ -99,6 +99,23 @@
             return $tasks;
         }
 
+        static function printTaskList($chosen_categories)
+        {
+            $all_tasks = array();
+            foreach($chosen_categories as $id) {
+                $category = Category::find($id);
+                $tasks = $category->getTasks();
+                foreach ($tasks as $task)
+                {
+                    $all_tasks[] = $task;
+                }
+            }  return $all_tasks;
+        }
+
+
+
+
+
 
     }
 ?>

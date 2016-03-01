@@ -34,8 +34,6 @@
         return $app['twig']->render('categories.html.twig', array('categories' => Category::getAll()));
     });
 
-    //////
-
     $app->post("/tasks", function() use ($app) {
         $description = $_POST['description'];
         $complete = $_POST['complete'];
@@ -58,6 +56,18 @@
     $app->get("/categories/{id}", function($id) use ($app) {
         $category = Category::find($id);
         return $app['twig']->render('category.html.twig', array('category' => $category, 'tasks' => $category->getTasks(), 'all_tasks' => Task::getAll()));
+    });
+
+    $app->get("/categories/{id}/edit", function($id) use ($app) {
+        $category = Category::find($id);
+        return $app['twig']->render('category_edit.html.twig', array('category' => $category));
+    });
+
+    $app->patch("/category/{id}/name", function($id) use ($app) {
+        $cat_name = $_POST['name'];
+        $category = Category::find($id);
+        $category->update($cat_name);
+        return $app['twig']->render('categories.html.twig', array('categories' => Category::getAll()));
     });
 
     $app->post("/add_tasks", function() use ($app) {
